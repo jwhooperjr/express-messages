@@ -11,7 +11,9 @@ CREATE DATABASE messages;
 \c messages;
 
 CREATE TABLE messages (
--- build your schema here
+    message_id SERIAL,
+    user_name TEXT,
+    message_body TEXT
 );
 
 -- Seed your data with a collection of insert statements
