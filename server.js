@@ -7,35 +7,40 @@ const app = express();
 // if you are using postgres, uncomment this line
 const pool = require('./db/pgconfig');
 
-app.use((req,res,next) => {
-  res.status(404).send('That route does not exist');
-});
-
 const port = 3000;
 
-app.post('/messages', (req, res, next) => {
-  pool.postAMessage()
-  .then(() => res.sendStatus(201))
+app.post('/messages', (req, res) => {
+  pool.postAMessage(req.body)
+  .then(results => res.send(results))
+  .catch(err => res.send(err))
 });
 
-app.get('/messages', (req, res, next) => {
+app.get('/messages', (req, res) => {
   pool.getAllMessages()
   .then(results => res.send(results))
+  .catch(err => res.send(err))
 });
 
-app.put('/messages/:id', (req, res, next) => {
-  pool.updateMessage()
-  .then()
-});
-
-app.delete('/messages/:id', (req, res, next) => {
-  pool.deleteMessage()
-  .then()
-});
-
-app.get('/messages/:id', (req, res, next) => {
-  pgconfig.getAMessage()
+app.put('/messages/:id', (req, res) => {
+  pool.updateMessage(req.body)
   .then(results => res.send(results))
+  .catch(err => res.send(err))
+});
+
+app.delete('/messages/:id', (req, res) => {
+  pool.deleteMessage()
+  .then(results => res.send(results))
+  .catch(err => res.send(err))
+});
+
+app.get('/messages/:id', (req, res) => {
+  pool.getAMessage(req.params.id)
+  .then(results => res.send(results))
+  .catch(err => res.send(err))
+});
+
+app.use((req,res,next) => {
+  res.status(404).send('That route does not exist');
 });
 
 app.listen(port, () => {
