@@ -4,6 +4,7 @@
 -- alternatively, open psql and copy and paste the code below
 -- once you've made your schema
 
+
 DROP DATABASE IF EXISTS messages;
 
 CREATE DATABASE messages;
@@ -15,6 +16,8 @@ CREATE TABLE messages (
     user_name TEXT,
     message_body TEXT
 );
+
+
 
 -- Seed your data with a collection of insert statements
 -- INSERT INTO messages () VALUES ();
