@@ -5,13 +5,13 @@
 -- once you've made your schema
 
 
-DROP DATABASE IF EXISTS messages;
+DROP DATABASE IF EXISTS new_database;
 
-CREATE DATABASE messages;
+CREATE DATABASE new_database;
 
-\c messages;
+\c new_database;
 
-CREATE TABLE messages (
+CREATE TABLE new_database (
     message_id SERIAL,
     user_name TEXT,
     message_body TEXT
